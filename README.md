@@ -1,6 +1,6 @@
 # Wechat_menu
 微信公众号菜单
-## 创建菜单
+## 创建公众号菜单
 ```php
 $APPID="公众号appid";
 $APPSECRET="公众号密钥";
@@ -30,7 +30,7 @@ $result = https_request($url);
 var_dump($result);
 ```
 
-## 删除菜单
+## 删除公众号菜单
 ```php
 $APPID="公众号appid";
 $APPSECRET="公众号密钥";
