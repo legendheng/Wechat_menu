@@ -11,8 +11,30 @@ $result=json_decode($json);
 
 $ACC_TOKEN=$result->access_token;
 
-$url = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=".$ACC_TOKEN;
-function https_request($url, $data = null){
+$jsonmenu = '{
+           "button":[
+
+               {
+             "type":"view",
+                   "name":"测试",
+                    "url":"http://www.baidu.com/",
+                   "sub_button":[]
+               },
+               {
+             "type":"view",
+                   "name":"测试",
+                   "url":"http://www.baidu.com/",
+                   "sub_button":[]
+               },
+
+               {
+                   "type":"view",
+                   "name":"测试",
+                   "url":"http://www.baidu.com/",
+                   "sub_button":[]
+               }]
+           }';
+function https_request($url,$data = null){
    $curl = curl_init();
    curl_setopt($curl, CURLOPT_URL, $url);
    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -25,8 +47,12 @@ function https_request($url, $data = null){
    $output = curl_exec($curl);
    curl_close($curl);
    return $output;
+
+
 }
-$result = https_request($url);
+$url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$ACC_TOKEN;
+
+$result = https_request($url, $jsonmenu);
 var_dump($result);
 ```
 
@@ -44,18 +70,18 @@ $ACC_TOKEN=$result->access_token;
 
 $url = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=".$ACC_TOKEN;
 function https_request($url, $data = null){
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-    if (!empty($data)){
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    }
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $output = curl_exec($curl);
-    curl_close($curl);
-    return $output;
+   $curl = curl_init();
+   curl_setopt($curl, CURLOPT_URL, $url);
+   curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+   curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+   if (!empty($data)){
+       curl_setopt($curl, CURLOPT_POST, 1);
+       curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+   }
+   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+   $output = curl_exec($curl);
+   curl_close($curl);
+   return $output;
 }
 $result = https_request($url);
 var_dump($result);
