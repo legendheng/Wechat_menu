@@ -61,7 +61,7 @@ $result = https_request($url);
 var_dump($result);
 ```
 
-##获取公众号目录
+## 获取公众号目录
 ```php
 $APPID="公众号appid";
 $APPSECRET="公众号密钥";
